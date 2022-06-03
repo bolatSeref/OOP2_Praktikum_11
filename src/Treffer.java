@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Treffer implements Comparable {
 
 	public int erzieltePunkt;
 	public static ArrayList<Integer> punkteArray = new ArrayList<>();
-
+	// version2
+	public static Integer [] myPunkteArray = {50,100,200,500,750,1000};
 	/**
 	 * Constructor, füllt ArrayList mit Gültigen Werten,
 	 * und setz den Punktwert
@@ -12,8 +14,8 @@ public class Treffer implements Comparable {
 	 */
 	public Treffer(int _erzieltePunkt) {
 		//this.erzieltePunkt = _erzieltePunkt;
-		fuelleArrayList();
-		setzeDenPunkt(_erzieltePunkt);
+		//fuelleArrayList();
+		setzeDenPunktV2(_erzieltePunkt);
 	}
 
 	/**
@@ -25,6 +27,20 @@ public class Treffer implements Comparable {
 	public void setzeDenPunkt (int punkt)
 	{
 		if(punkteArray.contains(Integer.valueOf(punkt)))
+		{
+			this.erzieltePunkt=punkt;
+		}
+		else 
+		{
+			this.erzieltePunkt=50;
+		}
+			
+		
+	}
+	
+	public void setzeDenPunktV2 (int punkt)
+	{
+		if(Arrays.asList(myPunkteArray).contains(Integer.valueOf(punkt)))
 		{
 			this.erzieltePunkt=punkt;
 		}

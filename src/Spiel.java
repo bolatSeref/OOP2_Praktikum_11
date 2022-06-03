@@ -11,7 +11,15 @@ public class Spiel {
 	
 	private TreeMap <Integer, Integer> punktMap=new TreeMap<>();
 	
-	
+	public static void main (String [] args)
+	{
+		//Treffer t1=new Treffer(5);
+		//t1.fuelleArrayList();
+		Spiel spiel=new Spiel();
+		spiel.testeTrefferVersion2();
+		
+		System.out.println(spiel.trefferBericht());
+	}
 	
 	
 	// Aufgabe 2B
@@ -93,8 +101,8 @@ public class Spiel {
 			for(; counter<13; counter++)
 			{
 				Random random=new Random();
-				int randomNumber=random.nextInt(Treffer.punkteArray.size());
-				this.registieren(new Treffer(Treffer.punkteArray.get(randomNumber)));
+				int randomNumber=random.nextInt(Treffer.myPunkteArray.length);
+				this.registieren(new Treffer(Treffer.myPunkteArray[randomNumber].intValue()));
 			//	System.out.println(randomNumber);
 			//	System.out.println(Treffer.punkteArray.get(randomNumber));
 
@@ -105,44 +113,6 @@ public class Spiel {
 			
 			this.registieren(t1);
 			this.registieren(t2);
-			
-		//	System.out.println(punktMap.size());
-			/*
-			Treffer t1=new Treffer(Treffer.punkteArray.get(0));
-			Treffer t2=new Treffer(Treffer.punkteArray.get(1));
-			Treffer t3=new Treffer(Treffer.punkteArray.get(2));
-			Treffer t4=new Treffer(Treffer.punkteArray.get(3));
-			Treffer t5=new Treffer(Treffer.punkteArray.get(4));
-			Treffer t6=new Treffer(Treffer.punkteArray.get(5));
-			
-			Treffer t7=new Treffer(Treffer.punkteArray.get(0));
-			Treffer t8=new Treffer(Treffer.punkteArray.get(1));
-			Treffer t9=new Treffer(Treffer.punkteArray.get(2));
-			Treffer t10=new Treffer(Treffer.punkteArray.get(3));
-			Treffer t11=new Treffer(Treffer.punkteArray.get(4));
-			Treffer t12=new Treffer(Treffer.punkteArray.get(5));
-			Treffer t13=new Treffer(Treffer.punkteArray.get(0));
-			
-			Treffer t14=new Treffer(Treffer.punkteArray.get(15));
-			Treffer t15=new Treffer(Treffer.punkteArray.get(125));
-			
-			this.registieren(t1);
-			this.registieren(t2);
-			this.registieren(t3);
-			this.registieren(t4);
-			this.registieren(t5);
-			this.registieren(t6);
-			this.registieren(t7);
-			this.registieren(t8);
-			this.registieren(t9);
-			this.registieren(t10);
-			this.registieren(t11);
-			this.registieren(t12);
-			this.registieren(t13);
-			this.registieren(t14);
-			this.registieren(t15);
-
-*/
 
 		}
 		
@@ -151,6 +121,13 @@ public class Spiel {
 		// Mann kann nicht über eine Map iterieren weil Map nicht Iterable Interface implemented hat.
 		
 		// Aufgabe 3B 
+		// - In welcher Reihenfolge ist dieses Set sortiert? 
+		//   Nach dem Keys sortiert
+		
+		
+		//- Kann man über einen Set iterieren? Woran erkennt man das?
+		//	https://docs.oracle.com/javase/8/docs/api/java/util/Set.html 
+		// SET ist in Java API Iterable definiert, deswegen kann man über einen Set iterieren
 		
 		public String trefferBericht() 
 		{
@@ -163,6 +140,9 @@ public class Spiel {
 			return bericht;
 		}
 		
-		
+		// Aufgabe 4A
+		public void testExceptions(Object key) {
+			
+		}
 }
 
