@@ -9,7 +9,7 @@ import java.util.TreeMap;
  */
 public class Spiel {
 	
-	private TreeMap <Integer, Integer> punktMap=new TreeMap<>();
+	private TreeMap <Integer, Integer> schaden=new TreeMap<>();
 	
 	public static void main (String [] args)
 	{
@@ -21,6 +21,37 @@ public class Spiel {
 		System.out.println(spiel.trefferBericht());
 		
 		spiel.score();
+		
+		System.out.println("************ Aufgabe 4b **********");
+		//Aufgabe 4B - Methoden aufruf mit einem Parameter des korrekten Typs
+		// weil schaden Map random ausgefüllt ist kann manchmal null werte eintreten. 
+		spiel.testExceptions(1000);
+		
+		//Aufgabe 4C1 
+		// Methoden aufruf mit einem Parameter des falschen Typs
+		// Fehler Meldung: Exception in thread "main" java.lang.ClassCastException: class java.lang.Integer cannot be cast to class java.lang.String
+		// Unchecked Exception
+		//	spiel.testExceptions("test mit falcschen Typ");
+		
+		
+		//Aufgabe 4C2
+		// Methoden aufruf mit null als Parameter
+		// Fehler Meldung: Exception in thread "main" java.lang.NullPointerException
+		// Unchecked Exception
+		//spiel.testExceptions(null);
+
+		System.out.println("************ Aufgabe 5B-F  **********");
+		//Aufgabe 5B Testen von Ausnahmebehandlung
+		// Korrekten aufruf
+		spiel.catchExeptions(100);
+		
+		//Aufruf mit null
+		spiel.catchExeptions(null);
+		
+		//Aufruf mit falschen Parameter Typ
+		//spiel.catchExeptions("test");
+		
+		
 	}
 	
 	
@@ -32,17 +63,17 @@ public class Spiel {
 	public void registieren (Treffer t)
 	{
 		
-		if(punktMap.containsKey(t.erzieltePunkt))// Wenn ein Eintrag schon gibt dann zunächst ermittle aktuelle Anzahl in der Map zu diesem treffer und dann aktualiesiere den Map
+		if(schaden.containsKey(t.erzieltePunkt))// Wenn ein Eintrag schon gibt dann zunächst ermittle aktuelle Anzahl in der Map zu diesem treffer und dann aktualiesiere den Map
 		{
-			int aktuelleAnzahl=punktMap.get(t.erzieltePunkt).intValue();
+			int aktuelleAnzahl=schaden.get(t.erzieltePunkt).intValue();
 			aktuelleAnzahl++;
-			punktMap.put(t.erzieltePunkt, aktuelleAnzahl);
+			schaden.put(t.erzieltePunkt, aktuelleAnzahl);
 			
 			//System.out.println(punktMap.get(t.erzieltePunkt).intValue());
 		}
 		else // wenn kein Eintrag in den Map gibt dann füge einen neuen Eintrag hinzu 
 		{
-			punktMap.put(t.erzieltePunkt, 1);
+			schaden.put(t.erzieltePunkt, 1);
    		}
 
 	}
@@ -134,7 +165,7 @@ public class Spiel {
 		public String trefferBericht() 
 		{
 			String bericht="";
-			for (Entry<Integer, Integer> entry : punktMap.entrySet()) {
+			for (Entry<Integer, Integer> entry : schaden.entrySet()) {
 			 //   bericht+=entry.getKey() + "/" + entry.getValue();
 			 System.out.println( entry.getKey() + "/" + entry.getValue());
  
@@ -145,9 +176,71 @@ public class Spiel {
 		// Aufgabe 4A
 		public void testExceptions(Object key) {
 			
+			
+			System.out.println(schaden.get(key));
+			System.out.println("###Fertig");
 		}
 		
 		
+		
+		//Aufgabe 5 
+		public void catchExeptions(Object key) 
+		{
+			try {
+				System.out.println(schaden.get(key));
+				System.out.println("Kein Fehler/Try Block");
+
+			}
+
+			catch (NullPointerException e)
+			{
+				System.err.println("Null Pointer Exception ist aufgetreten.");
+			}
+			catch (ClassCastException e)
+			{
+				System.err.println("Class Cast Exception ist aufgetreten.");
+			}
+			//Aufgabe 5C-D allgemeinen catch-Block am Ende funktioniert aber am Anfang erlaubt der Compiler nicht weil hier ein Hierarchie gibt
+			// Unreachable catch block for NullPointerException. It is already handled by the catch block for Exception
+			catch (Exception e)
+			{
+				System.err.println("Allgemeinen catch block.");
+			}
+			//Aufgabe 5E
+			finally {
+				System.err.println("Testen ist beendet.");
+			}
+		}
+		
+		
+		//Aufgabe 5
+				public void throwExceptions(Object key) throws Exception
+				{
+					try {
+						System.out.println(schaden.get(key));
+						System.out.println("Kein Fehler/Try Block");
+
+					}
+
+					catch (NullPointerException e)
+					{
+						System.err.println("Null Pointer Exception ist aufgetreten.");
+					}
+					catch (ClassCastException e)
+					{
+						System.err.println("Class Cast Exception ist aufgetreten.");
+					}
+					//Aufgabe 5C-D allgemeinen catch-Block am Ende funktioniert aber am Anfang erlaubt der Compiler nicht weil hier ein Hierarchie gibt
+					// Unreachable catch block for NullPointerException. It is already handled by the catch block for Exception
+					catch (Exception e)
+					{
+						System.err.println("Allgemeinen catch block.");
+					}
+					//Aufgabe 5E
+					finally {
+						System.err.println("Testen ist beendet.");
+					}
+				}
 		
 		//Aufgabe 6
 		public boolean istGuterTreffer(Integer punkt)
@@ -160,7 +253,7 @@ public class Spiel {
 		{
 			int guterTrefferCounter=0;
 			int score=0;
-			for (Entry<Integer, Integer> entry : punktMap.entrySet()) {				 
+			for (Entry<Integer, Integer> entry : schaden.entrySet()) {				 
 				 if(istGuterTreffer(entry.getKey()))
 				 {
 					 guterTrefferCounter+=entry.getValue();
