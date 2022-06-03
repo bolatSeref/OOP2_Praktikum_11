@@ -19,6 +19,8 @@ public class Spiel {
 		spiel.testeTrefferVersion2();
 		
 		System.out.println(spiel.trefferBericht());
+		
+		spiel.score();
 	}
 	
 	
@@ -143,6 +145,30 @@ public class Spiel {
 		// Aufgabe 4A
 		public void testExceptions(Object key) {
 			
+		}
+		
+		
+		
+		//Aufgabe 6
+		public boolean istGuterTreffer(Integer punkt)
+		{
+			return punkt>100;
+		}
+		
+		
+		public void score ()
+		{
+			int guterTrefferCounter=0;
+			int score=0;
+			for (Entry<Integer, Integer> entry : punktMap.entrySet()) {				 
+				 if(istGuterTreffer(entry.getKey()))
+				 {
+					 guterTrefferCounter+=entry.getValue();
+				 }
+				}
+			System.out.println(guterTrefferCounter);
+			score=guterTrefferCounter*11+(15-guterTrefferCounter)*3;
+			System.out.println("Score= " + score);
 		}
 }
 
