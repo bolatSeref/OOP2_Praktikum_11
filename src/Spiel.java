@@ -87,7 +87,6 @@ public class Spiel {
 			System.err.println("Class Cast Exception ist aufgetreten.");
 		}
 		catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.err.println("Allgemeinen catch block.");
 		}
 
@@ -266,7 +265,6 @@ public class Spiel {
 		catch (NullPointerException e) {
 			throw new NullPointerException();
 		} catch (ClassCastException e) {
-			System.err.println("Class Cast Exception ist aufgetreten.");
 			throw new ClassCastException();
 		}
 		// Aufgabe 5C-D allgemeinen catch-Block am Ende funktioniert aber am Anfang
@@ -274,7 +272,7 @@ public class Spiel {
 		// Unreachable catch block for NullPointerException. It is already handled by
 		// the catch block for Exception
 		catch (Exception e) {
-			System.err.println("Allgemeinen catch block.");
+			throw new Exception();
 		}
 		// Aufgabe 5E
 		finally {
