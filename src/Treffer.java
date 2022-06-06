@@ -1,12 +1,16 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+// ???? mit oder ohne <> ??? public class Treffer implements Comparable <Integer> {
+
 public class Treffer implements Comparable {
 
 	public int erzieltePunkt;
 	public static ArrayList<Integer> punkteArray = new ArrayList<>();
 	// version2
-	public static Integer [] myPunkteArray = {50,100,200,500,750,1000};
+	//Gültige Punktzahlen sind in einem Integer Array als Klassen-Variable definiert.
+	public static Integer [] gueltigePunktzahlenArray = {50,100,200,500,750,1000};
+	
 	/**
 	 * Constructor, füllt ArrayList mit Gültigen Werten,
 	 * und setz den Punktwert
@@ -24,27 +28,32 @@ public class Treffer implements Comparable {
 	 * wenn nicht dann setzt 50 für den IV 
 	 * @param punkt
 	 */
-	public void setzeDenPunkt (int punkt)
-	{
-		if(punkteArray.contains(Integer.valueOf(punkt)))
-		{
-			this.erzieltePunkt=punkt;
-		}
-		else 
-		{
-			this.erzieltePunkt=50;
-		}
-			
-		
-	}
-	
+//	public void setzeDenPunkt (int punkt)
+//	{
+//		if(punkteArray.contains(Integer.valueOf(punkt)))
+//		{
+//			this.erzieltePunkt=punkt;
+//		}
+//		else 
+//		{
+//			this.erzieltePunkt=50;
+//		}
+//			
+//		
+//	}
+//	
+	/**
+	 * Zunächst kontrolliere ob die Zahl vorgesehene Zahlen gehört. Wenn ja 
+	 * setze den IV, wenn nicht setze den Wert 50 zu IV erzieltePunkt.
+	 * @param punkt
+	 */
 	public void setzeDenPunktV2 (int punkt)
 	{
-		if(Arrays.asList(myPunkteArray).contains(Integer.valueOf(punkt)))
+		if(Arrays.asList(gueltigePunktzahlenArray).contains(Integer.valueOf(punkt))) 
 		{
 			this.erzieltePunkt=punkt;
 		}
-		else 
+		else // wenn die Zahl nicht zu vorgesehene Zahlen gehört
 		{
 			this.erzieltePunkt=50;
 		}
@@ -55,6 +64,7 @@ public class Treffer implements Comparable {
 	/**
 	 * 
 	 */
+	/*
 	public void fuelleArrayList() {
 		punkteArray.add(50);
 		punkteArray.add(100);
@@ -64,6 +74,7 @@ public class Treffer implements Comparable {
 		punkteArray.add(1000);
 
 	}
+	*/
 //
 //	@Override
 //	public int compareTo(Integer o) {
