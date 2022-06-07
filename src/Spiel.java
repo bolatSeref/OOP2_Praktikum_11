@@ -16,7 +16,7 @@ public class Spiel {
 	// als Value zu speichern.
 	// Deswegen beide Werte sind Integer.
 	// ?? initialisieren hier oder im Constructor sinnvoll ??
-	private TreeMap<Integer, Integer> schaden;
+	private TreeMap<Treffer, Integer> schaden;
 
 	/**
 	 * Constructor initialisiert den TreeMap
@@ -38,14 +38,13 @@ public class Spiel {
 		Spiel spiel = new Spiel();
 		spiel.testeTreffer();
 		System.out.println("************ Aufgabe 3C **********");
-		System.out.println(spiel.trefferBericht());
+		System.out.println(spiel.trefferBericht().toString());
 
-		spiel.score();
 
 		System.out.println("************ Aufgabe 4b **********");
 		// Aufgabe 4B - Methoden aufruf mit einem Parameter des korrekten Typs
 		// weil schaden Map random ausgefüllt ist kann manchmal null werte eintreten.
-		spiel.testExceptions(1000);
+		spiel.testExceptions(new Treffer(1000));
 
 		// Aufgabe 4C1
 		// Methoden aufruf mit einem Parameter des falschen Typs
@@ -69,7 +68,7 @@ public class Spiel {
 
 		System.out.println("************ Aufgabe 5B-Aufruf mit Null Werte  **********");
 		// Aufruf mit null
-		//spiel.catchExeptions(null);
+	    //spiel.catchExeptions(null);
 		
 		System.out.println("************ Aufgabe 5B-Aufruf mit String Werte  **********");
 		// Aufruf mit falschen Typ Parameter 
@@ -78,7 +77,7 @@ public class Spiel {
 		System.out.println("************ Aufgabe 5H  **********");
 		
 		try {
-			spiel.throwExceptions(1000);
+			spiel.throwExceptions("45");
 		} 
 		catch (NullPointerException e){
 			System.err.println("Null Pointer Exception ist aufgetreten.");
@@ -102,14 +101,14 @@ public class Spiel {
 	 * @param t
 	 */
 	public void registrieren(Treffer t) {
-		if (schaden.containsKey(t.erzieltePunkt)) {
+		if (schaden.containsKey(t)) {
 			// get Methode bekommt Key als Parameter und gibt dazugehörige Value zurück
-			int aktuelleAnzahl = schaden.get(t.erzieltePunkt).intValue();
+			int aktuelleAnzahl = schaden.get(t).intValue();
 			aktuelleAnzahl++; // ein erhöht
-			schaden.put(t.erzieltePunkt, aktuelleAnzahl); // aktualiesiert 
+			schaden.put(t, aktuelleAnzahl); // aktualiesiert 
 
 		} else {
-			schaden.put(t.erzieltePunkt, 1);
+			schaden.put(t, 1);
 		}
 
 	}
@@ -199,7 +198,7 @@ public class Spiel {
 	 */
 	public String trefferBericht() {
 		String bericht = "";
-		for (Map.Entry<Integer, Integer> entry : schaden.entrySet()) {
+		for (Entry<Treffer, Integer> entry : schaden.entrySet()) {
 			// bericht+=entry.getKey() + "/" + entry.getValue();
 			System.out.println(entry.getKey() + "/" + entry.getValue());
 
@@ -285,21 +284,6 @@ public class Spiel {
 	 * Wenn ein Treffer größer als 100 ist beschreiben wir den als Guter Treffer
 	 * @param punkt
 	 * @return
-	 */
-	public boolean istGuterTreffer(Integer punkt) {
-		return punkt > 100;
-	}
+	 */	
 
-	public void score() {
-		int guterTrefferCounter = 0;
-		int score = 0;
-		for (Entry<Integer, Integer> entry : schaden.entrySet()) {
-			if (istGuterTreffer(entry.getKey())) {
-				guterTrefferCounter += entry.getValue();
-			}
-		}
-		System.out.println(guterTrefferCounter);
-		score = guterTrefferCounter * 11 + (15 - guterTrefferCounter) * 3;
-		System.out.println("Score= " + score);
-	}
 }

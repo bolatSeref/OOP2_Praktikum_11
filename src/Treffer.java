@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 // ???? mit oder ohne <> ??? public class Treffer implements Comparable <Integer> {
 
-public class Treffer implements Comparable {
+public class Treffer implements Comparable <Treffer>{
 
 	public int erzieltePunkt;
 	public static ArrayList<Integer> punkteArray = new ArrayList<>();
@@ -42,6 +42,11 @@ public class Treffer implements Comparable {
 //		
 //	}
 //	
+	
+	public String toString()
+	{
+		return this.erzieltePunkt+"";
+	}
 	/**
 	 * Zunächst kontrolliere ob die Zahl vorgesehene Zahlen gehört. Wenn ja 
 	 * setze den IV, wenn nicht setze den Wert 50 zu IV erzieltePunkt.
@@ -65,27 +70,26 @@ public class Treffer implements Comparable {
 	 * 
 	 */
 	/*
-	public void fuelleArrayList() {
-		punkteArray.add(50);
-		punkteArray.add(100);
-		punkteArray.add(200);
-		punkteArray.add(500);
-		punkteArray.add(750);
-		punkteArray.add(1000);
-
+	public int compareTo(Integer o) {
+		// TODO Auto-generated method stub
+	//	Integer i=Integer.valueOf(erzieltePunkt);
+		return this.compareTo(o);
 	}
 	*/
-//
-//	@Override
-//	public int compareTo(Integer o) {
-//		// TODO Auto-generated method stub
-//		Integer i=Integer.valueOf(erzieltePunkt);
-//		return i.compareTo(o);
-//	}
 
+
+/*
 	@Override
 	public int compareTo(Object o) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	*/
+
+	@Override
+	public int compareTo(Treffer o) {
+		// TODO Auto-generated method stub
+		return this.erzieltePunkt-o.erzieltePunkt;
+	}
+	
 }
